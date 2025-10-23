@@ -1,10 +1,47 @@
+# EchoMox - Advanced Mail Server with Reservoir Computing
+
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Go Version](https://img.shields.io/badge/go-1.23%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+EchoMox is an advanced mail server that extends [mox](https://github.com/mjl-/mox) with cutting-edge **reservoir computing** capabilities for AI-powered spam filtering. It combines the robustness of a modern, secure mail server with sophisticated machine learning techniques including:
+
+- **Echo State Networks (ESN)** - Recurrent neural networks for temporal pattern recognition
+- **Membrane Computing (P-Systems)** - Hierarchical computational frameworks inspired by biological cells
+- **Affective Computing** - Emotional intelligence based on Differential Emotion Theory
+- **Geometric Flow** - Ricci flow dynamics for state space regularization
+
+## 📚 Documentation
+
+**[📑 Documentation Index](docs/INDEX.md)** - Complete guide to all documentation
+
+- **[Technical Architecture](docs/ARCHITECTURE.md)** - Comprehensive system architecture with detailed mermaid diagrams
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete deployment and configuration instructions
+- **[Reservoir Computing](RESERVOIR_COMPUTING.md)** - Deep dive into the AI/ML framework
+- **[Integration Guide](reservoir/INTEGRATION.md)** - How to integrate reservoir computing
+- **[Package Documentation](reservoir/README.md)** - API reference for the reservoir package
+
+## 🌟 Key Features
+
+### Core Mail Server (from mox)
+
 Mox is a modern full-featured open source secure mail server for low-maintenance self-hosted email.
 
-For more details, see the mox website, https://www.xmox.nl.
+For more details about mox, see the mox website, https://www.xmox.nl.
+
+### Enhanced with Reservoir Computing
+
+- **Advanced Spam Detection**: AI-powered classification using multiple neural computing paradigms
+- **Adaptive Learning**: Continuous improvement through online learning capabilities
+- **Emotional Analysis**: Detect spam based on emotional manipulation patterns
+- **Hierarchical Processing**: Multi-level membrane computing for complex pattern recognition
+- **Geometric Regularization**: Ricci flow prevents extreme states and improves stability
 
 See Quickstart below to get started.
 
 ## Features
+
+### Email Server Core
 
 - Quick and easy to start/maintain mail server, for your own domain(s).
 - SMTP (with extensions) for receiving, submitting and delivering email.
@@ -15,6 +52,24 @@ See Quickstart below to get started.
 - Reputation tracking, learning (per user) host-, domain- and
   sender address-based reputation from (Non-)Junk email classification.
 - Bayesian spam filtering that learns (per user) from (Non-)Junk email.
+
+### 🧠 Reservoir Computing Features (EchoMox Enhancement)
+
+- **Echo State Network (ESN)**: 100-neuron reservoir with sparse random connections
+  for temporal pattern recognition in email content
+- **Membrane Computing (P-Systems)**: 3-level hierarchical membrane structure for
+  multi-dimensional spam signal processing
+- **Affective Computing**: Emotion detection based on Differential Emotion Theory
+  (Joy, Sadness, Anger, Fear, Disgust, Interest, Surprise)
+- **PAD Model**: Valence/Arousal/Dominance analysis for emotional profiling
+- **Ricci Flow Regularization**: Geometric smoothing of emotional state manifold
+- **Runge-Kutta Integration**: 4th-order numerical stability for state updates
+- **Configurable Personas**: Tune filtering behavior with personality traits
+- **Weighted Integration**: Combines Bayesian (70%) and reservoir (30%) predictions
+- **Online Learning**: Continuous adaptation from user feedback
+
+### Additional Features
+
 - Slowing down senders with no/low reputation or questionable email content
   (similar to greylisting). Rejected emails are stored in a mailbox called Rejects
   for a short period, helping with misclassified legitimate synchronous
@@ -43,6 +98,18 @@ See Quickstart below to get started.
 Mox is available under the MIT-license and was created by Mechiel Lukkien,
 mechiel@ueber.net. Mox includes BSD-3-claused code from the Go Authors, and the
 Public Suffix List by Mozilla under Mozilla Public License, v2.0.
+
+**EchoMox** extends mox with reservoir computing capabilities and is also available
+under the MIT license. The reservoir computing framework integrates concepts from
+multiple research areas:
+- Reservoir computing (Echo State Networks)
+- Membrane computing (P-Systems)
+- Affective computing (Differential Emotion Theory)
+- Differential geometry (Ricci flow)
+- Numerical analysis (Runge-Kutta methods)
+
+For questions specific to EchoMox's reservoir computing features, see the 
+[GitHub repository](https://github.com/Entelecho/echomox).
 
 Mox has automated tests, including for interoperability with Postfix for SMTP.
 Mox is manually tested with email clients: Mozilla Thunderbird, mutt, iOS Mail,
@@ -128,6 +195,44 @@ for junk filtering and rate-limiting).
 # Development
 
 See develop.txt for instructions/tips for developing on mox.
+
+# Architecture
+
+EchoMox combines traditional email server components with advanced AI capabilities:
+
+```mermaid
+graph LR
+    subgraph "Email Processing"
+        IN[Incoming Email] --> PARSE[Parser]
+        PARSE --> TRAD[Traditional Filters]
+        TRAD --> |SPF/DKIM/DMARC| AUTH[Authentication]
+        AUTH --> BAYES[Bayesian Filter]
+    end
+    
+    subgraph "Reservoir Computing"
+        BAYES --> ESN[Echo State Network]
+        BAYES --> MEM[Membrane P-Systems]
+        BAYES --> AFF[Affective Computing]
+        ESN --> COMBINE[Weighted Combiner]
+        MEM --> COMBINE
+        AFF --> COMBINE
+    end
+    
+    COMBINE --> DECISION[Spam/Ham Decision]
+    DECISION --> STORE[Message Store]
+    
+    style ESN fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style MEM fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style AFF fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+```
+
+For detailed architecture diagrams and explanations, see:
+- **[Technical Architecture Documentation](docs/ARCHITECTURE.md)** - Complete system architecture
+- **[Reservoir Computing Deep Dive](RESERVOIR_COMPUTING.md)** - ML/AI framework details
+
+# Development
+
+See develop.txt for instructions/tips for developing on echomox and mox.
 
 # Sponsors
 
