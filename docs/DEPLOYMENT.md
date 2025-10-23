@@ -176,7 +176,7 @@ After running quickstart, install as a systemd service:
 
 ```bash
 # Generate service file
-./echomox config printservice | sudo tee /etc/systemd/system/mox.service
+./mox config printservice | sudo tee /etc/systemd/system/mox.service
 
 # Enable and start service
 sudo systemctl daemon-reload
@@ -370,7 +370,7 @@ graph TB
 
 ```bash
 # Get DNS records from echomox
-./echomox config dnsrecords yourdomain.com
+./mox config dnsrecords yourdomain.com
 
 # Example output:
 @ 300 IN MX 10 mail.yourdomain.com.
@@ -409,7 +409,7 @@ dig +short TXT default._domainkey.yourdomain.com
 dig +short TXT _dmarc.yourdomain.com
 
 # Use echomox built-in checker
-./echomox config dnscheck yourdomain.com
+./mox config dnscheck yourdomain.com
 ```
 
 ---
@@ -566,13 +566,13 @@ Key metrics to monitor:
 
 ```bash
 # Create backup
-./echomox backup /backup/echomox-$(date +%Y%m%d)
+./mox backup /backup/echomox-$(date +%Y%m%d)
 
 # Verify backup
-./echomox verifydata /backup/echomox-20240128/data
+./mox verifydata /backup/echomox-20240128/data
 
 # Restore from backup
-# 1. Stop echomox
+# 1. Stop mox service
 sudo systemctl stop mox
 
 # 2. Restore files
@@ -580,9 +580,9 @@ rm -rf /home/mox/data
 cp -a /backup/echomox-20240128/data /home/mox/data
 
 # 3. Verify
-./echomox verifydata /home/mox/data
+./mox verifydata /home/mox/data
 
-# 4. Start echomox
+# 4. Start mox service
 sudo systemctl start mox
 ```
 
@@ -632,7 +632,7 @@ sudo journalctl -u mox -f
 **Solutions**:
 ```bash
 # Check DKIM/SPF/DMARC
-./echomox config dnscheck yourdomain.com
+./mox config dnscheck yourdomain.com
 
 # Verify DNS propagation
 dig +short TXT yourdomain.com
@@ -693,13 +693,13 @@ grep "acme" /home/mox/data/mox.log
 **Solutions**:
 ```bash
 # Check queue
-./echomox queue list
+./mox queue list
 
 # Check specific message
-./echomox queue dump MESSAGE_ID
+./mox queue dump MESSAGE_ID
 
 # Force delivery attempt
-./echomox queue schedule -now all
+./mox queue schedule -now all
 
 # Check DNS resolution
 dig +short MX recipient-domain.com
@@ -774,25 +774,25 @@ flowchart TB
 
 ```bash
 # System status
-./echomox admin systemstatus
+./mox admin systemstatus
 
 # Check accounts
-./echomox config account list
+./mox config account list
 
 # Test email delivery
-echo "Test message" | ./echomox sendmail you@yourdomain.com
+echo "Test message" | ./mox sendmail you@yourdomain.com
 
 # Check queue status
-./echomox queue list
+./mox queue list
 
 # Test DNS configuration
-./echomox config dnscheck yourdomain.com
+./mox config dnscheck yourdomain.com
 
 # Verify data integrity
-./echomox verifydata /home/mox/data
+./mox verifydata /home/mox/data
 
 # Check logs for specific issue
-./echomox admin logreader -level error -last 1h
+./mox admin logreader -level error -last 1h
 ```
 
 ---
