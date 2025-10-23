@@ -13,6 +13,8 @@ EchoMox is an advanced mail server that extends [mox](https://github.com/mjl-/mo
 
 ## 📚 Documentation
 
+**[📑 Documentation Index](docs/INDEX.md)** - Complete guide to all documentation
+
 - **[Technical Architecture](docs/ARCHITECTURE.md)** - Comprehensive system architecture with detailed mermaid diagrams
 - **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete deployment and configuration instructions
 - **[Reservoir Computing](RESERVOIR_COMPUTING.md)** - Deep dive into the AI/ML framework
