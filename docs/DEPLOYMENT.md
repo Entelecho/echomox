@@ -75,13 +75,15 @@ sudo useradd -m -d /home/mox mox
 # Switch to mox user
 sudo -u mox -i
 
-# Download latest echomox binary
+# Clone and build EchoMox
 cd /home/mox
-GOBIN=$PWD CGO_ENABLED=0 go install github.com/mjl-/mox@latest
-mv mox echomox  # or create symlink
+git clone https://github.com/Entelecho/echomox.git
+cd echomox
+make build
 
+# The binary will be ./mox
 # Run quickstart
-./echomox quickstart you@yourdomain.com
+./mox quickstart you@yourdomain.com
 
 # Follow the instructions to:
 # 1. Add DNS records
@@ -588,23 +590,27 @@ sudo systemctl start mox
 
 ```bash
 # Check for updates
-./echomox checkupdate
+./mox checkupdate
 
-# Download new version
-GOBIN=/home/mox CGO_ENABLED=0 go install github.com/mjl-/mox@latest
+# Download new version from GitHub
+cd /tmp
+git clone --depth 1 https://github.com/Entelecho/echomox.git
+cd echomox
+make build
 
 # Create backup before upgrade
-./echomox backup /backup/pre-upgrade-$(date +%Y%m%d)
+cd /home/mox
+./mox backup /backup/pre-upgrade-$(date +%Y%m%d)
 
 # Stop service
 sudo systemctl stop mox
 
 # Replace binary
 mv mox mox.old
-mv ~/go/bin/mox .
+cp /tmp/echomox/mox .
 
 # Verify data with new binary
-./echomox verifydata /home/mox/data
+./mox verifydata /home/mox/data
 
 # Start service
 sudo systemctl start mox

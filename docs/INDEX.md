@@ -173,9 +173,16 @@ sudo useradd -m -d /home/mox mox
 # Switch to mox user
 sudo -u mox -i
 
-# Download and compile
+# Clone and compile EchoMox
 cd /home/mox
-GOBIN=$PWD CGO_ENABLED=0 go install github.com/mjl-/mox@latest
+git clone https://github.com/Entelecho/echomox.git
+cd echomox
+make build
+
+# Or download pre-built binary (if available)
+# wget https://github.com/Entelecho/echomox/releases/latest/download/echomox-linux-amd64
+# chmod +x echomox-linux-amd64
+# mv echomox-linux-amd64 mox
 ```
 
 ### Configuration (5 minutes)
