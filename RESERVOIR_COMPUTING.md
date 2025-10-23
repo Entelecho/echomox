@@ -4,6 +4,11 @@
 
 This document describes the Deep Tree Echo State Network (ESN) Reservoir Computing Framework integrated into the mox mail server. This enhancement adds sophisticated AI-powered classification capabilities while maintaining the server's core focus on security, simplicity, and low maintenance.
 
+> **Quick Links**:
+> - [Technical Architecture](docs/ARCHITECTURE.md#reservoir-computing-integration) - Full architectural diagrams
+> - [Deployment Guide](docs/DEPLOYMENT.md#reservoir-computing-configuration) - Configuration details
+> - [Package Documentation](reservoir/README.md) - API reference
+
 ## What is Reservoir Computing?
 
 Reservoir computing is a framework for computation that uses recurrent neural networks with fixed random connections (the "reservoir") and only trains the output layer. This provides several advantages:
@@ -12,6 +17,29 @@ Reservoir computing is a framework for computation that uses recurrent neural ne
 - **Computational Efficiency**: No backpropagation through time required
 - **Rich Dynamics**: Fixed reservoir provides complex temporal patterns
 - **Stability**: Spectral radius control ensures echo state property
+
+### High-Level Architecture
+
+```mermaid
+graph TB
+    EMAIL[Email Message] --> EXTRACT[Feature Extraction]
+    
+    EXTRACT --> ESN[Echo State Network]
+    EXTRACT --> MEMBRANE[Membrane Computing]
+    EXTRACT --> AFFECTIVE[Affective Computing]
+    
+    ESN --> |Prediction| COMBINE[Weighted Combination]
+    MEMBRANE --> |Signals| COMBINE
+    AFFECTIVE --> |Profile| COMBINE
+    BAYESIAN[Bayesian Filter] --> |Baseline| COMBINE
+    
+    COMBINE --> DECISION[Spam/Ham Decision]
+    
+    style ESN fill:#e1f5ff,stroke:#01579b,stroke-width:3px
+    style MEMBRANE fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style AFFECTIVE fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    style COMBINE fill:#fff3e0,stroke:#e65100,stroke-width:3px
+```
 
 ## Architecture Components
 
